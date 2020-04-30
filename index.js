@@ -9,7 +9,7 @@ var grid = false;
 var highest = 0;
 var lowest;
 var sp;
-var times = 2;
+var times = 1;
 var st;
 var int;
 var l;
@@ -29,7 +29,7 @@ function setup() {
   for (let i = 0; i < 100; i++) {
     mites.push(new Mite(Math.floor(random(0,(500/gridSize) + 1)),Math.floor(random(0,(500/gridSize) + 1)), 10, color(0,0,0), 1, 1, 1));
   }
-  for (let i = 0; i < 1500; i++) {
+  for (let i = 0; i < 1000; i++) {
     sugars.push(new Sugar(Math.floor(random(0,(500/gridSize) + 1)),Math.floor(random(0,(500/gridSize) + 1)), 2));
     sc[sugars[i].y][sugars[i].x] = true;
   }
@@ -51,13 +51,13 @@ function draw () {
   }
   if (t%10 === 0) {
     //console.log(mites.length);
-    repopulate(20);
+    repopulate(40);
     newSugar(times);
     for (let m of mites) {
       for (let s of sugars) {
         if (collision(m,s)) {
           if (m.show && s.show) {
-            s.changeHealth(-1);
+            s.changeHealth(-2);
             m.changeHealth(10);
           }
         }
@@ -73,7 +73,7 @@ function draw () {
     }
     for (let m of mites) {
       m.move();
-      m.changeHealth(-1 * (m.speed/(m.stamina * (11/24))));
+      m.changeHealth(-1 * (.8/(m.stamina*m.stamina)));
     }
   }
   if (grid) {
@@ -82,10 +82,12 @@ function draw () {
   if (mites.length < lowest) {
     lowest = mites.length;
   }
-  fill(0);
+  current = mites.length;
+  fill(255);
   textSize(20);
   text("Highest: " + highest, 10, 460);
   text("Lowest:  " + lowest, 10, 480);
+  text("Current: " + current, 350, 460)
   t++;
 };
 

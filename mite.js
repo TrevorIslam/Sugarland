@@ -16,7 +16,7 @@ class Mite {
 
   drawSelf() {
     if (this.show) {
-      fill((this.speed-1)*51,(this.stamina-1)*51,(this.stamina-1)*51);
+      fill((this.speed-1)*51,(this.stamina-1)*51,(this.intel-1)*51);
       //console.log(this.stamina)
 
       rect(this.x*gridSize,this.y*gridSize,gridSize,gridSize);
@@ -25,7 +25,7 @@ class Mite {
 
   move() {
     var r = Math.floor(random(0,100));
-    if (this.x < 501-this.speed && this.x > (this.speed - 1) && this.y < 501 - this.speed && this.y > (this.speed - 1)) {
+    if (this.x < 502-this.speed && this.x > (this.speed - 1) && this.y < 501 - this.speed && this.y > (this.speed - 1)) {
       if (this.x + 1 < 500/gridSize && this.x - 1 >= 0 && this.y - 1 >= 0 && this.y + 1 < 500/gridSize) {
         if (sc[this.y][this.x + 1]) {
           if (r < (this.intel + 1) * 12.5) {
