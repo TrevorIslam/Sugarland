@@ -73,7 +73,7 @@ function draw () {
     }
     for (let m of mites) {
       m.move();
-      m.changeHealth(-1 * (.8/(m.stamina*m.stamina)));
+      m.changeHealth(-1 * (.5/(m.stamina)));
     }
   }
   if (grid) {
